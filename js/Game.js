@@ -127,7 +127,7 @@ Batcat.Game.prototype = {
         this.emitter.y = ball.sprite.y;
         this.emitter.start(true, 2500, 500, 30);
         var dead = this.balls.countDead();
-        if (dead === 6){
+        if (dead === 7){
             this.state.start('GameOver');
         }
     },
