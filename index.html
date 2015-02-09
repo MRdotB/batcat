@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="fr">
+    <meta charset="UTF-8">
+    <title>Batcat</title>
+    <script src="js/libs/phaser.js"></script>
+    <script src="js/Boot.js"></script>
+    <script src="js/Preloader.js"></script>
+    <script src="js/StartMenu.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/GameOver.js"></script>
+</head>
+<body>
+<div id="gameContainer"></div>
+<script type="text/javascript">
+    window.onload = function() {
+        var game = new Phaser.Game(600, 400, Phaser.AUTO, 'gameContainer');
+        game.state.add('Boot', Batcat.Boot);
+        game.state.add('Preloader', Batcat.Preloader);
+        game.state.add('StartMenu',Batcat.StartMenu);
+        game.state.add('Game',Batcat.Game);
+        game.state.add('GameOver',Batcat.GameOver);
+        game.state.start('Boot');
+    }
+</script>
+</body>
+</html>
