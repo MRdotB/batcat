@@ -1,5 +1,6 @@
 Batcat.Game = function (game) {
     this.ballI = 0;
+    this.bodySize = 50;
 }
 Batcat.Game.prototype = {
     create: function () {
@@ -24,8 +25,8 @@ Batcat.Game.prototype = {
         this.player.animations.add('nomnom', [0, 1, 2, 3, , 3, 2, 1], 10, true);
         this.player.scale.x = 0.15;
         this.player.scale.y = 0.15;
-        this.physics.p2.enable(this.player, false);
-        this.player.body.setCircle(50);
+        this.physics.p2.enable(this.player, true);
+        this.player.body.setCircle(this.bodySize);
         this.player.animations.play('nomnom');
         this.player.lookAt = 'right';
         this.player.fixedRotation = true;
@@ -112,6 +113,10 @@ Batcat.Game.prototype = {
     },
     hitBall: function (player, ball) {
         if (ball.sprite.live == 0) {
+            this.bodySize +=10;
+            player.sprite.body.setCircle(this.bodySize);
+            player.sprite.body.setCollisionGroup(this.playerCollisionGroup);
+            player.sprite.body.collides(this.ballCollisionGroup, this.hitBall, this);
             ball.sprite.kill();
             if (player.sprite.lookAt === 'right') {
                 player.sprite.scale.x += 0.05;
